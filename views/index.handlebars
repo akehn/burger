@@ -1,0 +1,33 @@
+<main>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3">
+        {{#each burgers}} {{#unless this.devoured}}
+        <div>
+          <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+            <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+          </form>
+        </div>
+        {{/unless}} {{/each}}
+      </div>
+
+      <div class="col-sm-6">
+        <h2>Add A Burger Option</h2>
+        <form action="/burgers" method="POST">
+          <input type="text" class="form-control text-center" id="name" name="burger_name" placeholder="Add Your Favorite Burger">
+          <button type="submit" class="addBurgerButton">Add The Burger</button>
+        </form>
+      </div>
+
+      <div class="col-sm-3">
+        {{#each burgers}} {{#if this.devoured}}
+        <div class='burgerEaten'>
+          <div>
+            {{this.burger_name}}
+          </div>
+        </div>
+        {{/if}} {{/each}}
+      </div>
+    </div>
+  </div>
+</main>
